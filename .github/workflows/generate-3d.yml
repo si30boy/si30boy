@@ -1,0 +1,19 @@
+name: Generate 3D Contribution Graph
+
+on:
+  schedule:
+    - cron: "0 0 * * *"
+  workflow_dispatch:
+
+jobs:
+  generate:
+    runs-on: ubuntu-latest
+    name: Generate 3D GitHub Contribution Graph
+    steps:
+      - uses: actions/checkout@v2
+      - uses: yoshi389111/github-profile-3d-contrib@0.10.1
+        with:
+          USERNAME: ${{ github.repository_owner }}
+      - uses: EndBug/add-and-commit@v9
+        with:
+          message: "Generated 3D profile graph"
